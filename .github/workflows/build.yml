@@ -19,10 +19,13 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '20'
+      - name: Install dependencies
+        run: npm install
+        
       - uses: sonarsource/sonarqube-scan-action@master
         env:
-          SONAR_TOKEN: sqp_8a5db97b6db9b535c5f82551396b98cf4227a7fc
-          SONAR_HOST_URL: http://localhost:9000
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
       # If you wish to fail your job when the Quality Gate is red, uncomment the
       # following lines. This would typically be used to fail a deployment.
       # - uses: sonarsource/sonarqube-quality-gate-action@master
